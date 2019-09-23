@@ -1,0 +1,27 @@
+{
+  "id": "f373aca5-dd15-46d1-9ed8-37176d446a38",
+  "name": "DXC Show Total Quantity On Hand Before Transaction Occurred",
+  "publisher": "DXC",
+  "brief": "",
+  "description": "AMC-122 09-23-19",
+  "version": "1.0.0.0",
+  "compatibilityId": "1.0.0.0",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "capabilities": [],
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "11.0.0.0",
+  "application": "11.0.0.0",
+  "idRange": {
+    "from": 50000,
+    "to": 50149
+  },
+  "target": "Internal",
+  "showMyCode": true,
+  "breakonerror" : true,
+  "runtime": "1.0"
+}
