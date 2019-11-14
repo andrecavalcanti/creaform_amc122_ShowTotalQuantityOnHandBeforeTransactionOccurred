@@ -29,6 +29,8 @@ report 50006 "DXC Update Item Ledger Entry"
 
     trigger OnPreReport();
     begin
+        // ItemLedgerEntry.MODIFYALL(Inventory,0);
+        // EXIT;
         ProgressWindow.OPEN('Processing Entry No. #1#######');
         ItemLedgerEntry.SetCurrentKey("Entry No.");
         //ItemLedgerEntry.Ascending(true);
@@ -37,19 +39,25 @@ report 50006 "DXC Update Item Ledger Entry"
           repeat
             Total := 0;
             //SLEEP(1000);
+            
             OldItemLedgerEntry.SETRANGE("Item No.",ItemLedgerEntry."Item No.");
             OldItemLedgerEntry.SETRANGE("Location Code",ItemLedgerEntry."Location Code");
             OldItemLedgerEntry.SETFILTER("Entry No.",'<%1',ItemLedgerEntry."Entry No.");
             if OldItemLedgerEntry.FINDFIRST then begin
               repeat
+                // ItemLedgerEntry.Inventory := 0;
+                // ItemLedgerEntry.Modify;
+                // commit;
                 Total := Total + OldItemLedgerEntry.Quantity;
                 ItemLedgerEntry.Inventory := Total;
+                ItemLedgerEntry.Inventory := ItemLedgerEntry.Inventory + ItemLedgerEntry.Quantity;
                 ItemLedgerEntry.Modify;
               until OldItemLedgerEntry.NEXT = 0;
             end else begin
-                // ItemLedgerEntry.Inventory := 0;
-                // ItemLedgerEntry.Modify;
-            end;
+                ItemLedgerEntry.Inventory := ItemLedgerEntry.Quantity;
+                ItemLedgerEntry.Modify;
+            end;            
+
 
             ProgressWindow.UPDATE(1,ItemLedgerEntry."Entry No."); 
             //ItemLedgerEntry.NEXT := 0;
